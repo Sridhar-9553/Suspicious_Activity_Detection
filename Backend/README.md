@@ -11,4 +11,6 @@ uvicorn main:app --reload --port 8000
 
 API: `GET /api/health`, `POST /api/analyze` (multipart field `video`), `GET /api/history`.
 
-**Current status:** upload validation and video metadata work. The Kaggle notebook model is not connected yet; endpoint deliberately returns `awaiting_model` rather than fabricating predictions. Review notebook preprocessing, architecture, class labels, weights and inference code before implementing model loading.
+The backend loads `runs/best_model.keras` by default, then checks `Backend/models/best_model.keras` (the committed deployment copy). Override the location with `MODEL_PATH`; relative paths are resolved from this backend folder. Model inference matches the notebook: ImageNet ResNet50 features, 16 sampled frames per two-second clip, and a 0.705 threshold. Each upload returns per-clip scores and flagged intervals. The model's ImageNet weights may need to download the first time ResNet50 initializes.
+
+The health endpoint reports whether a saved model file is available. The AI output is a screening aid and must be reviewed by a person.
