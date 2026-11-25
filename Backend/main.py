@@ -50,7 +50,7 @@ async def analyze_video(video: UploadFile = File(...)):
         if not is_model_file_available():
             raise HTTPException(
                 503,
-                "The trained model weights are missing. Add best_model.keras to "
+                "The trained model weights are missing. Add final_model.keras to "
                 "runs/ or Backend/models/, or configure MODEL_PATH on the backend.",
             )
         try:
