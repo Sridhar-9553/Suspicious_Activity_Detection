@@ -1,12 +1,16 @@
-# Deploy Sentinel AI on Render
+# Deploy Sentinel AI with Streamlit Community Cloud
 
-The Render Blueprint creates a FastAPI backend and a static React frontend from the root `render.yaml`. The trained `best_model.keras` file is stored at `Backend/models/best_model.keras`; this file is included in the public GitHub repository.
+The Streamlit app runs the interface and video model in the same service; it does not need a separate API service.
 
-1. In Render, choose **New → Blueprint** and connect this repository.
-2. Set `VITE_API_HOST` on the frontend service to the backend's public hostname without `https://`, then redeploy the frontend.
-3. Set `ALLOWED_ORIGINS` on the backend to the frontend's complete public URL, including `https://`, then redeploy/restart the backend.
-4. Open and share the frontend service URL.
+1. Confirm the repository contains `Backend/streamlit_app.py`, root `requirements.txt`, and `Backend/models/best_model.keras`.
+2. Open [Streamlit Community Cloud](https://share.streamlit.io/) and create an app from the GitHub repository.
+3. Select branch `main`, set the app file path to `Backend/streamlit_app.py`, and choose Python 3.11 in advanced settings.
+4. Deploy and share the resulting app URL.
 
-The backend also needs ImageNet ResNet50 weights. TensorFlow downloads these on its first model initialization unless they are already cached. TensorFlow plus ResNet50 needs more memory than a minimal API; a free backend may restart or fail under load. A larger instance may be required. Do not select or authorize a paid plan without reviewing its cost.
+The root `requirements.txt` installs the model dependencies from `Backend/requirements.txt` plus Streamlit. The first video analysis downloads ImageNet ResNet50 weights unless cached, so the first run can take longer. Streamlit hosting resources may be insufficient for TensorFlow or long videos; confirm the current plan's memory limits before sharing the app widely.
 
-Uploaded footage is stored on the backend instance's local disk and may be removed by a restart or redeploy. Do not use this prototype to store sensitive footage. The model flags two-second intervals using a 0.705 threshold. Results can be wrong and require human review; they are not proof of criminal activity.
+Uploads are stored temporarily during analysis and deleted afterward. Do not use this prototype to store sensitive footage. The model scores two-second intervals using a 0.705 threshold. Results can be wrong and require human review; they are not proof of criminal activity.
+
+## Existing Render deployment
+
+The repository also includes `render.yaml` for the separate React/FastAPI deployment. Its free backend restarted when an analysis loaded the ResNet50 model, so it is not reliable for video analysis on that plan. No paid Render service has been selected.
