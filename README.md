@@ -2,8 +2,8 @@
 
 [Try Sentinel AI](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/)  - Test your own video
 
-**Resources:** [Dataset](https://www.kaggle.com/datasets/daudshah/video-dataset) 
-· [Report (PDF)](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) 
+**Resources:** [Dataset](https://www.kaggle.com/datasets/daudshah/video-dataset) \n
+· [Report (PDF)](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) \n
 · [Suspicious Activity Detector (PowerPoint)](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx)
 
 
