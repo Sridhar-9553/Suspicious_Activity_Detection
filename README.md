@@ -1,12 +1,13 @@
 # Suspicious Activity Detection in Surveillance Video
 ### A Simple Temporal Classifier for CCTV Footage
 
-[Open the Sentinel AI website](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/) - Test your own video
+[Test your own video](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/) - 
 
 [Watch the screen recording](https://github.com/Sridhar-9553/Suspicious_Activity_Detection/blob/main/ss/Screen%20Recording%202026-11-25%20191542.mp4)
 
-**Report (PDF):** [Open the report](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) 
-**PowerPoint:** [Open the presentation](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx) 
+**Report :** [PDF](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) 
+**PowerPoint:** [ppt](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx) 
+
 **Project title:** Suspicious Activity Detection in Surveillance Video  
 **Approach:** ResNet-50 + Bidirectional GRU + Temporal Attention  
 **Task:** Binary video classification (Normal / Suspicious)
