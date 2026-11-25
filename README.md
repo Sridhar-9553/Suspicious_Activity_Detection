@@ -1,4 +1,4 @@
-Suspicious Activity Detection in Surveillance Video
+#Suspicious Activity Detection in Surveillance Video
 A lightweight temporal classifier that flags suspicious activity in short CCTV clips. Each clip is reduced to 16 frames, embedded once with a frozen ResNet-50, and classified by a small BiGRU + attention head. The whole trainable model has ~660K parameters and trains in about one second per epoch on CPU thanks to feature caching.
 
 Overview
