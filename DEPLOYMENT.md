@@ -2,7 +2,7 @@
 
 The Streamlit app runs the interface and video model in the same service; it does not need a separate API service.
 
-1. Confirm the repository contains `Backend/streamlit_app.py`, root `requirements.txt`, and `Backend/models/best_model.keras`.
+1. Confirm the repository contains `Backend/streamlit_app.py`, root `requirements.txt`, and `Backend/models/final_model.keras`.
 2. Open [Streamlit Community Cloud](https://share.streamlit.io/) and create an app from the GitHub repository.
 3. Select branch `main`, set the app file path to `Backend/streamlit_app.py`, and choose Python 3.11 in advanced settings.
 4. Deploy and share the resulting app URL.
