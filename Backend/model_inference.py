@@ -116,10 +116,6 @@ def get_activity_model() -> ActivityModel:
     return ActivityModel(model_path())
 
 
-def is_model_file_available() -> bool:
-    return model_path().is_file()
-
-
 def analyze_video(path: Path, fps: float, frame_count: int) -> dict:
     if fps <= 0 or frame_count <= 0:
         raise ValueError("Video metadata is invalid; cannot sample frames for analysis.")
