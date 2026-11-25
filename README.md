@@ -2,6 +2,8 @@
 
 [Open the Sentinel AI website](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/)
 
+[Watch the screen recording](https://github.com/Sridhar-9553/Suspicious_Activity_Detection/blob/main/ss/Screen%20Recording%202026-11-25%20191542.mp4)
+
 Sentinel AI analyzes surveillance videos in two-second intervals and classifies each interval as normal or suspicious. Its results are intended for human review and are not proof of criminal activity.
 
 ## Screenshots
