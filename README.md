@@ -7,17 +7,17 @@
 
 Sentinel AI is a React frontend with a FastAPI backend. It uses a ResNet50 feature extractor and a trained temporal classifier to score uploaded surveillance videos in two-second windows.
 
-The backend expects the `best_model.keras` weights from the notebook. Locally it finds `runs/best_model.keras` automatically; otherwise set `MODEL_PATH` to the model file's absolute path. It samples 16 frames per two-second window, preprocesses them as in the notebook, and uses the validation-tuned threshold of `0.705`. The overall video is marked suspicious if any window crosses the threshold.
+The backend expects the `final_model.keras` weights from the notebook. Locally it finds `runs/final_model.keras` automatically; otherwise set `MODEL_PATH` to the model file's absolute path. It samples 16 frames per two-second window, preprocesses them as in the notebook, and uses the validation-tuned threshold of `0.705`. The overall video is marked suspicious if any window crosses the threshold.
 
 > **Important:** This is an AI-assisted screening tool, not proof of criminal activity. Results can be wrong and require human review. Uploaded videos are stored on the backend instance's local disk.
 >
-> The saved `best_model.keras` file is published at `Backend/models/best_model.keras` in the public GitHub repository. The pretrained ImageNet ResNet50 weights are separate and are downloaded on first model initialization.
+> The saved `final_model.keras` file is published at `Backend/models/final_model.keras` in the public GitHub repository. The pretrained ImageNet ResNet50 weights are separate and are downloaded on first model initialization.
 
 ## Deploy a public Streamlit app
 
 The Streamlit version combines the interface and model inference in one app. The React/FastAPI version remains available as a separate option.
 
-1. Push the repository to GitHub with `Backend/streamlit_app.py`, the root `requirements.txt`, and `Backend/models/best_model.keras`.
+1. Push the repository to GitHub with `Backend/streamlit_app.py`, the root `requirements.txt`, and `Backend/models/final_model.keras`.
 2. In [Streamlit Community Cloud](https://share.streamlit.io/), create an app from this repository's `main` branch and set the app file to `Backend/streamlit_app.py`.
 3. Choose Python 3.11 in the app's advanced settings, then deploy.
 4. Open and share the Streamlit app URL.
