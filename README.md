@@ -19,6 +19,6 @@ Sentinel AI analyzes surveillance videos in two-second intervals and classifies 
 
 - **Dataset:** [Video Dataset on Kaggle](https://www.kaggle.com/datasets/daudshah/video-dataset)
 - **VA report (PDF):** [Open the report](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf)  
-  The written report describes the project, its video-processing and classification approach, and its evaluation.
+  The eight-page report explains the dataset and labeling, the 16-frame feature-extraction pipeline using a frozen ResNet-50, and the bidirectional GRU with attention used to classify video clips. It also discusses threshold selection, held-out test results, and known model errors and limitations.
 - **Suspicious Activity Detector (PowerPoint):** [Open the presentation](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx)  
-  The presentation gives a concise overview of the detector and illustrates example video classifications.
+  The 15-slide presentation introduces the project and its temporal-classifier approach, with example surveillance-video classifications.
