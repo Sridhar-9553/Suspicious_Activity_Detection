@@ -1,8 +1,10 @@
 # Sentinel AI — suspicious activity video website
 
-[Try Sentinel AI](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/)
+[Try Sentinel AI](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/)  - Test your own video
 
-**Resources:** [Dataset](https://www.kaggle.com/datasets/daudshah/video-dataset) · [VA report (PDF)](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) · [Suspicious Activity Detector (PowerPoint)](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx)
+**Resources:** [Dataset](https://www.kaggle.com/datasets/daudshah/video-dataset) 
+· [Report (PDF)](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) 
+· [Suspicious Activity Detector (PowerPoint)](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx)
 
 
 Sentinel AI is a React frontend with a FastAPI backend. It uses a ResNet50 feature extractor and a trained temporal classifier to score uploaded surveillance videos in two-second windows.
