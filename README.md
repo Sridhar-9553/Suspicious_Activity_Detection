@@ -1,5 +1,6 @@
 # Sentinel AI — suspicious activity video website
 
+[Try Sentinel AI](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/)
 Sentinel AI is a React frontend with a FastAPI backend. It uses a ResNet50 feature extractor and a trained temporal classifier to score uploaded surveillance videos in two-second windows.
 
 The backend expects the `best_model.keras` weights from the notebook. Locally it finds `runs/best_model.keras` automatically; otherwise set `MODEL_PATH` to the model file's absolute path. It samples 16 frames per two-second window, preprocesses them as in the notebook, and uses the validation-tuned threshold of `0.705`. The overall video is marked suspicious if any window crosses the threshold.
