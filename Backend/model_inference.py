@@ -42,7 +42,7 @@ class ActivityModel:
         if not model_path.is_file():
             raise FileNotFoundError(
                 f"Trained model file was not found at {model_path}. "
-                "Set MODEL_PATH or add best_model.keras to runs/ or Backend/models/."
+                "Set MODEL_PATH or add final_model.keras to runs/ or Backend/models/."
             )
         self.model = tf.keras.models.load_model(
             model_path,
@@ -103,8 +103,8 @@ def model_path() -> Path:
         return path if path.is_absolute() else ROOT / path
 
     candidates = (
-        ROOT.parent / "runs" / "best_model.keras",
-        ROOT / "models" / "best_model.keras",
+        ROOT.parent / "runs" / "final_model.keras",
+        ROOT / "models" / "final_model.keras",
         ROOT.parent / "runs" / "final_model.keras",
         ROOT / "models" / "final_model.keras",
     )
