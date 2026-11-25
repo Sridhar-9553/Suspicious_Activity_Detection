@@ -1,178 +1,76 @@
+# Sentinel AI — suspicious activity video website
 
-# Suspicious Activity Detection in Surveillance Video
-### A Simple Temporal Classifier for CCTV Footage
+Sentinel AI is a React frontend with a FastAPI backend. It uses a ResNet50 feature extractor and a trained temporal classifier to score uploaded surveillance videos in two-second windows.
 
-## 📌 Overview
+The backend expects the `best_model.keras` weights from the notebook. Locally it finds `runs/best_model.keras` automatically; otherwise set `MODEL_PATH` to the model file's absolute path. It samples 16 frames per two-second window, preprocesses them as in the notebook, and uses the validation-tuned threshold of `0.705`. The overall video is marked suspicious if any window crosses the threshold.
 
-This project focuses on detecting suspicious activities in surveillance videos using deep learning. It aims to classify video clips into two categories: **Normal** and **Suspicious**.
+> **Important:** This is an AI-assisted screening tool, not proof of criminal activity. Results can be wrong and require human review. Uploaded videos are stored on the backend instance's local disk.
+>
+> The saved `best_model.keras` file is published at `Backend/models/best_model.keras` in the public GitHub repository. The pretrained ImageNet ResNet50 weights are separate and are downloaded on first model initialization.
 
-The proposed approach combines a pretrained ResNet-50 model for spatial feature extraction with a Bidirectional Gated Recurrent Unit (BiGRU) and a Temporal Attention mechanism to learn important patterns across video frames.
+## Deploy a public Streamlit app
 
-Instead of processing entire videos directly, the system extracts features from 16 uniformly sampled frames per video and stores them for efficient training. These features are then passed through a lightweight temporal classification network to predict suspicious activities.
+The Streamlit version combines the interface and model inference in one app. The React/FastAPI version remains available as a separate option.
 
-## 🏗️ Proposed Architecture
+1. Push the repository to GitHub with `Backend/streamlit_app.py`, the root `requirements.txt`, and `Backend/models/best_model.keras`.
+2. In [Streamlit Community Cloud](https://share.streamlit.io/), create an app from this repository's `main` branch and set the app file to `Backend/streamlit_app.py`.
+3. Choose Python 3.11 in the app's advanced settings, then deploy.
+4. Open and share the Streamlit app URL.
 
-The overall pipeline consists of the following stages:
+The first analysis downloads ImageNet ResNet50 weights if they are not cached. Streamlit Cloud's available memory can change; confirm that the selected hosting plan can load TensorFlow and process your video lengths. The app removes each temporary upload after analysis. Avoid uploading sensitive footage to a public demo.
 
-1. **Frame Sampling:** Extracts 16 uniformly distributed frames from each input video.
-2. **Preprocessing:** Converts frames to RGB format and resizes them to 224 × 224 pixels.
-3. **Feature Extraction:** Uses a pretrained and frozen ResNet-50 network to extract 2048-dimensional feature vectors from each frame.
-4. **Feature Caching:** Stores extracted features on disk to avoid repeated CNN computations during training.
-5. **Temporal Learning:** A Bidirectional GRU captures temporal dependencies between consecutive frame features.
-6. **Temporal Attention:** Assigns importance weights to different frames, allowing the model to focus on potentially suspicious activities.
-7. **Classification:** A fully connected classification head with sigmoid activation predicts the final Normal/Suspicious label.
+## Deploy the React/FastAPI version with Render
 
-### Model Components
+1. Push this project to a GitHub repository. Make sure the repository includes `render.yaml`.
+2. In [Render](https://render.com/), choose **New → Blueprint**, connect the GitHub repository, and deploy the two services described in `render.yaml`.
+3. After the services are created, copy the public URL of the backend web service (for example, `https://sentinel-ai-api.onrender.com`).
+4. Open the **frontend static site** in Render and add this environment variable:
+   - `VITE_API_HOST` = the backend hostname, without `https://` (for example, `sentinel-ai-api.onrender.com`)
+   Then trigger a new deploy so Vite builds the frontend with the backend address.
+5. Copy the public URL of the frontend static site. In the **backend web service**, add:
+   - `ALLOWED_ORIGINS` = the frontend URL, including `https://` (for example, `https://sentinel-ai-frontend.onrender.com`)
+   Then restart/redeploy the backend.
+6. Open the frontend URL. You can share that live URL; the GitHub repository link is for viewing or cloning the source code.
 
-| Component | Description |
-|---|---|
-| Backbone | Pretrained ResNet-50 |
-| Input Frames | 16 frames per video |
-| Frame Resolution | 224 × 224 |
-| Feature Dimension | 2048 |
-| Feature Projection | Dense layer (256 units) |
-| Temporal Network | Bidirectional GRU (64 units per direction) |
-| Attention | Temporal Attention Pooling |
-| Classification | Fully Connected Layers + Sigmoid |
-| Trainable Parameters | 660,738 |
+Render's free web services may sleep when idle, so the first request after a period of inactivity can take a while. TensorFlow and ResNet50 need substantially more memory than a minimal API; a free backend may restart or fail under load. The first model load also downloads ImageNet ResNet50 weights unless cached. Uploaded files are stored on the backend instance's local disk and may not persist across redeploys or restarts. Do not treat this prototype as a production service for sensitive footage.
 
-## 📂 Dataset
+## Run locally
 
-The dataset consists of surveillance video clips representing normal and suspicious activities.
+Requirements: Python 3.11 or newer. Install the Streamlit and model dependencies from the repository root:
 
-The dataset contains 1,334 videos divided into training, validation, and testing sets.
+```powershell
+python -m pip install -r requirements.txt
+python -m streamlit run Backend/streamlit_app.py
+```
 
-| Dataset Split | Total Videos | Normal | Suspicious |
-|---|---:|---:|---:|
-| Training | 940 | 380 | 560 |
-| Validation | 194 | 91 | 103 |
-| Testing | 200 | 143 | 57 |
-| **Total** | **1,334** | **614** | **720** |
+Open `http://localhost:8501` to use the Streamlit app.
 
-### Suspicious Activities
+For the React/FastAPI version, Node.js and npm are also required. TensorFlow and its dependencies are installed from the backend requirements.
 
-The suspicious category includes activities such as:
+In PowerShell terminal 1:
 
-- Abuse
-- Arrest
-- Arson
-- Assault
-- Burglary
-- Explosion
-- Fighting
-- Road Accidents
-- Robbery
-- Shooting
-- Shoplifting
-- Stealing
-- Vandalism
+```powershell
+Set-Location 'backend'
+..\.venv\Scripts\python.exe -m pip install -r requirements.txt
+..\.venv\Scripts\python.exe -m uvicorn main:app --reload --port 8000
+```
 
-Normal activities include walking, sitting, standing, clapping, and other routine activities.
+If the project-level `.venv` is not present, create it from the repository root with `python -m venv .venv` and install the backend requirements using `.venv\Scripts\python.exe -m pip install -r backend\requirements.txt`.
 
-## ⚙️ Training Configuration
+In PowerShell terminal 2:
 
-| Parameter | Value |
-|---|---|
-| Framework | TensorFlow 2.21.0 / Keras |
-| Programming Language | Python |
-| Feature Extractor | ResNet-50 (Frozen) |
-| Temporal Model | Bidirectional GRU |
-| Loss Function | Focal Loss |
-| Optimizer | Adam |
-| Initial Learning Rate | 0.001 |
-| Batch Size | 32 |
-| Maximum Epochs | 80 |
-| Early Stopping Patience | 6 |
-| Dropout | 0.4 and 0.6 |
-| Decision Threshold | 0.705 |
+```powershell
+Set-Location 'frontend'
+npm install
+npm run dev
+```
 
-The decision threshold is optimized using the macro F1-score on the validation dataset to balance the classification performance of both classes.
+Open `http://localhost:5173`. Locally, the frontend uses `http://localhost:8000` by default.
 
-## 📊 Experimental Results
+## API
 
-The proposed model achieved the following performance on the held-out test dataset:
+- `GET /api/health` — backend status
+- `POST /api/analyze` — upload a video using multipart field `video`
+- `GET /api/history` — placeholder history endpoint
 
-| Evaluation Metric | Result |
-|---|---:|
-| Test Accuracy | **90.50%** |
-| Macro F1-Score | **0.890** |
-| Normal Class F1-Score | 0.931 |
-| Suspicious Class F1-Score | 0.848 |
-| Suspicious Activity Recall | **93.00%** |
-| Suspicious Activity Precision | 77.90% |
-
-### Confusion Matrix
-
-| Actual / Predicted | Normal | Suspicious |
-|---|---:|---:|
-| Normal | 128 | 15 |
-| Suspicious | 4 | 53 |
-
-The model correctly identifies 53 out of 57 suspicious video clips, achieving a suspicious activity recall of 93%.
-
-## 🖼️ Visual Results
-
-The inference pipeline generates annotated video frames displaying the predicted activity category and corresponding confidence score.
-
-- Green indicator: Normal activity.
-- Red indicator: Suspicious activity.
-
-These visual predictions help interpret the model's output on surveillance footage.
-
-## 🛠️ Technologies Used
-
-- Python
-- TensorFlow
-- Keras
-- OpenCV
-- NumPy
-- Scikit-learn
-- Matplotlib
-- ResNet-50
-- Bidirectional GRU
-- Temporal Attention Mechanism
-
-## ✨ Key Features
-
-- Deep learning-based suspicious activity detection.
-- Spatial feature extraction using pretrained ResNet-50.
-- Temporal sequence modelling using Bidirectional GRU.
-- Attention-based learning to identify important video frames.
-- Feature caching for computational efficiency.
-- Focal Loss for handling class imbalance.
-- Validation-based decision threshold optimization.
-- Annotated video inference with prediction labels and confidence scores.
-
-## ⚠️ Limitations
-
-Despite achieving promising results, the current approach has some limitations:
-
-- Overfitting due to the relatively small training dataset.
-- False alarms on normal videos containing complex movements.
-- Potential shortcut learning due to differences in video resolution between normal and suspicious footage.
-- Limited temporal information from sampling only 16 frames per video.
-
-## 🚀 Future Work
-
-Potential improvements include:
-
-- Training with larger and more diverse surveillance datasets.
-- Resolution-matched evaluation to reduce shortcut learning.
-- Comparing performance with established video anomaly detection approaches.
-- Exploring two-stream appearance and motion-based networks.
-- Investigating transformer-based temporal architectures.
-- Improving temporal feature extraction to capture subtle suspicious activities.
-
-## 👨‍💻 Contributors
-
-- **Anurag Choudhury**
-- **Kolli Sridhar**
-- **Harsha Vardhan**
-
----
-
-**Project Title:** Suspicious Activity Detection in Surveillance Video
-
-**Approach:** ResNet-50 + Bidirectional GRU + Temporal Attention
-
-**Task:** Binary Video Classification (Normal / Suspicious)
+Supported file extensions: MP4, AVI, MOV, and MKV.
