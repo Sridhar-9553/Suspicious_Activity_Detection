@@ -1,7 +1,14 @@
 # Suspicious Activity Detection in Surveillance Video
 ### A Simple Temporal Classifier for CCTV Footage
 
-[Open the Sentinel AI website](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/) · [Watch the screen recording](https://github.com/Sridhar-9553/Suspicious_Activity_Detection/blob/main/ss/Screen%20Recording%202026-11-25%20191542.mp4)
+[Open the Sentinel AI website](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/) - Test your own video
+
+· [Watch the screen recording](https://github.com/Sridhar-9553/Suspicious_Activity_Detection/blob/main/ss/Screen%20Recording%202026-11-25%20191542.mp4)
+
+## 📄 Project reports
+
+- **VA report (PDF):** [Open the report](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) — an eight-page account of the dataset and labeling, model architecture, methodology, threshold selection, held-out test evaluation, and limitations.
+- **Suspicious Activity Detector (PowerPoint):** [Open the presentation](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx) — a 15-slide introduction to the project and its temporal-classifier approach, with example surveillance-video classifications.
 
 ## 📌 Overview
 
@@ -136,11 +143,6 @@ The inference pipeline displays a predicted category and confidence score on vid
 - **Anurag Choudhury**
 - **Kolli Sridhar**
 - **Harsha Vardhan**
-
-## 📄 Project reports
-
-- **VA report (PDF):** [Open the report](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf) — an eight-page account of the dataset and labeling, model architecture, methodology, threshold selection, held-out test evaluation, and limitations.
-- **Suspicious Activity Detector (PowerPoint):** [Open the presentation](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2Fcriminal_activity_detector_report.pptx) — a 15-slide introduction to the project and its temporal-classifier approach, with example surveillance-video classifications.
 
 ---
 
