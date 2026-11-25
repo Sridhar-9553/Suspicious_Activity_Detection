@@ -1,6 +1,7 @@
 # Sentinel AI — suspicious activity video website
 
 [Try Sentinel AI](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/)
+
 **Resources:** [Dataset](https://www.kaggle.com/datasets/daudshah/video-dataset) · [PDF report](./VA_report.pdf) · [PowerPoint report](./criminal_activity_detector_report.pptx)
 
 
