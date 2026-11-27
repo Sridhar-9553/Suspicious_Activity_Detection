@@ -3,6 +3,8 @@
 
 [Test your own video](https://suspiciousactivitydetection-p3kzmupgydqmprz42hnzlg.streamlit.app/) 
 
+[Project_Demonistration_Video](https://raw.githubusercontent.com/Sridhar-9553/Suspicious_Activity_Detection/main/Project_Demonistration_Video.mp4)
+
 [Watch the screen recording](https://raw.githubusercontent.com/Sridhar-9553/Suspicious_Activity_Detection/main/ss/Screen%20Recording%202026-11-25%20191542.mp4)
 
 **Report :** [PDF](https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FSridhar-9553%2FSuspicious_Activity_Detection%2Fmain%2FVA_report.pdf)
